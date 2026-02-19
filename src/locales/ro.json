@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "studio": "Studio",
+    "showroom": "Showroom",
+    "roomPlanner": "Planificator cameră"
+  },
+  "home": {
+    "title": "Meubles Concept",
+    "subtitle": "Proiectați mobilă în milimetri, vizualizați-o în 3D.",
+    "cta_studio": "Creați mobilă",
+    "cta_showroom": "Vedeți creațiile mele",
+    "cta_planner": "Planificați o cameră"
+  },
+  "studio": {
+    "title": "Studio de proiectare",
+    "new_design": "Mobilă nouă",
+    "edit_design": "Editați mobila",
+    "name": "Nume",
+    "type": "Tip",
+    "type_shelf": "Raft simplu",
+    "type_wardrobe": "Dulap simplu",
+    "width": "Lățime (mm)",
+    "depth": "Adâncime (mm)",
+    "height": "Înălțime (mm)",
+    "panelThickness": "Grosimea panourilor (mm)",
+    "shelvesCount": "Număr de rafturi",
+    "backPanel": "Panou spate",
+    "toeKick": "Soclu (mm)",
+    "material": "Material",
+    "mat_wood": "Lemn",
+    "mat_lacquer": "Lacuit",
+    "mat_metal": "Metal",
+    "save": "Salvează",
+    "export_glb": "Exportă GLB",
+    "view_front": "Față",
+    "view_side": "Lateral",
+    "view_top": "Sus",
+    "view_iso": "Izometric",
+    "validation_required": "Câmp obligatoriu",
+    "validation_min": "Minimum {{min}} mm",
+    "validation_max": "Maximum {{max}} mm",
+    "saved_ok": "Mobilă salvată !",
+    "saved_error": "Eroare la salvare"
+  },
+  "showroom": {
+    "title": "Showroom",
+    "empty": "Nicio creație. Mergeți la Studio pentru a începe.",
+    "dimensions": "Dimensiuni",
+    "delete": "Șterge",
+    "delete_confirm": "Ștergeți această mobilă?",
+    "open_studio": "Editați",
+    "type_shelf": "Raft",
+    "type_wardrobe": "Dulap"
+  },
+  "planner": {
+    "title": "Planificator cameră",
+    "new_room": "Cameră nouă",
+    "room_name": "Numele camerei",
+    "room_length": "Lungime (mm)",
+    "room_width": "Lățime (mm)",
+    "room_height": "Înălțime (mm)",
+    "add_furniture": "Adăugați mobilă",
+    "no_furniture": "Nicio mobilă în cameră",
+    "no_designs": "Nicio creație salvată",
+    "overlap_warning": "Suprapunere detectată!",
+    "x_pos": "X (mm)",
+    "y_pos": "Y (mm)",
+    "rotation": "Rotație (°)",
+    "remove": "Eliminați",
+    "save_room": "Salvează camera",
+    "saved_ok": "Cameră salvată !",
+    "grid_snap": "Magnetizare grilă",
+    "select_design": "Alegeți o mobilă"
+  },
+  "common": {
+    "cancel": "Anulează",
+    "close": "Închide",
+    "loading": "Încărcare...",
+    "error": "Eroare",
+    "yes": "Da",
+    "no": "Nu",
+    "mm": "mm"
+  },
+  "lang": {
+    "fr": "Français",
+    "ro": "Română"
+  }
+}

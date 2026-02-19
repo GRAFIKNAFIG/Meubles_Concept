@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "studio": "Studio",
+    "showroom": "Showroom",
+    "roomPlanner": "Planificateur de pièce"
+  },
+  "home": {
+    "title": "Meubles Concept",
+    "subtitle": "Concevez vos meubles en millimètres, visualisez-les en 3D.",
+    "cta_studio": "Créer un meuble",
+    "cta_showroom": "Voir mes créations",
+    "cta_planner": "Planifier une pièce"
+  },
+  "studio": {
+    "title": "Studio de conception",
+    "new_design": "Nouveau meuble",
+    "edit_design": "Modifier le meuble",
+    "name": "Nom",
+    "type": "Type",
+    "type_shelf": "Étagère simple",
+    "type_wardrobe": "Armoire simple",
+    "width": "Largeur (mm)",
+    "depth": "Profondeur (mm)",
+    "height": "Hauteur (mm)",
+    "panelThickness": "Épaisseur des panneaux (mm)",
+    "shelvesCount": "Nombre d'étagères",
+    "backPanel": "Panneau arrière",
+    "toeKick": "Socle (mm)",
+    "material": "Matériau",
+    "mat_wood": "Bois",
+    "mat_lacquer": "Laqué",
+    "mat_metal": "Métal",
+    "save": "Enregistrer",
+    "export_glb": "Exporter GLB",
+    "view_front": "Face",
+    "view_side": "Côté",
+    "view_top": "Dessus",
+    "view_iso": "Isométrique",
+    "validation_required": "Ce champ est obligatoire",
+    "validation_min": "Minimum {{min}} mm",
+    "validation_max": "Maximum {{max}} mm",
+    "saved_ok": "Meuble enregistré !",
+    "saved_error": "Erreur lors de l'enregistrement"
+  },
+  "showroom": {
+    "title": "Showroom",
+    "empty": "Aucune création. Allez au Studio pour commencer.",
+    "dimensions": "Dimensions",
+    "delete": "Supprimer",
+    "delete_confirm": "Supprimer ce meuble ?",
+    "open_studio": "Modifier",
+    "type_shelf": "Étagère",
+    "type_wardrobe": "Armoire"
+  },
+  "planner": {
+    "title": "Planificateur de pièce",
+    "new_room": "Nouvelle pièce",
+    "room_name": "Nom de la pièce",
+    "room_length": "Longueur (mm)",
+    "room_width": "Largeur (mm)",
+    "room_height": "Hauteur (mm)",
+    "add_furniture": "Ajouter un meuble",
+    "no_furniture": "Aucun meuble dans la pièce",
+    "no_designs": "Aucune création sauvegardée",
+    "overlap_warning": "Chevauchement détecté !",
+    "x_pos": "X (mm)",
+    "y_pos": "Y (mm)",
+    "rotation": "Rotation (°)",
+    "remove": "Retirer",
+    "save_room": "Enregistrer la pièce",
+    "saved_ok": "Pièce enregistrée !",
+    "grid_snap": "Grille magnétique",
+    "select_design": "Choisir un meuble"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "yes": "Oui",
+    "no": "Non",
+    "mm": "mm"
+  },
+  "lang": {
+    "fr": "Français",
+    "ro": "Română"
+  }
+}
