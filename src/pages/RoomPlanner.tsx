@@ -9,8 +9,8 @@ function uuid() {
   return crypto.randomUUID()
 }
 
-const SCALE = 0.05
-const GRID = 100
+const SCALE = 0.05  // SVG px per mm (e.g. 4000 mm room → 200 px wide)
+const GRID = 100    // snap grid size in mm
 
 function snapVal(v: number) { return Math.round(v / GRID) * GRID }
 
