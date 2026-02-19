@@ -64,6 +64,7 @@ export default function RoomPlanner() {
   const [toast, setToast] = useState<string | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
   const [snapEnabled, setSnapEnabled] = useState(true)
+  const [originalCreatedAt, setOriginalCreatedAt] = useState<number | null>(null)
   const dragRef = useRef<DragState | null>(null)
   const snapRef = useRef(snapEnabled)
   snapRef.current = snapEnabled
@@ -77,6 +78,7 @@ export default function RoomPlanner() {
       roomRepo.get(id).then(r => {
         if (r) {
           setRoom(omitRoomMeta(r))
+          setOriginalCreatedAt(r.createdAt)
         }
       })
     }
@@ -135,7 +137,7 @@ export default function RoomPlanner() {
   async function handleSave() {
     if (!room.name.trim()) { showToast(t('studio.validation_required')); return }
     const now = Date.now()
-    const r: Room = { ...room, id: id || uuid(), createdAt: now, updatedAt: now }
+    const r: Room = { ...room, id: id || uuid(), createdAt: id ? (originalCreatedAt ?? now) : now, updatedAt: now }
     await roomRepo.save(r)
     showToast(t('planner.saved_ok'))
     if (!id) navigate(`/planner/${r.id}`)

@@ -14,7 +14,7 @@ type CameraView = 'front' | 'side' | 'top' | 'iso'
 const CAMERA_PRESETS: Record<CameraView, [number, number, number]> = {
   front: [0, 0, 1],
   side:  [1, 0, 0],
-  top:   [0, 1, 0.001],
+  top:   [0, 1, 0.001], // tiny Z offset prevents gimbal lock when looking straight down
   iso:   [1, 1, 1],
 }
 

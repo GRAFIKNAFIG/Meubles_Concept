@@ -12,6 +12,7 @@ export function buildFurnitureGroup(design: Design): THREE.Group {
   const { width: W, depth: D, height: H, panelThickness: T,
           shelvesCount, backPanel, toeKick, material } = design
 
+  // Scale factor: 1 scene unit = 10 mm (i.e. 1 cm), so 0.1 converts mm → scene units
   const scale = 0.1
   const w = W * scale
   const d = D * scale
