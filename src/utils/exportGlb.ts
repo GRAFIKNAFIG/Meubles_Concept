@@ -13,7 +13,7 @@ export function exportGroupAsGlb(group: THREE.Group, filename: string): Promise<
         a.href = url
         a.download = filename
         a.click()
-        setTimeout(() => URL.revokeObjectURL(url), 5000)
+        URL.revokeObjectURL(url)
         resolve()
       },
       (err) => reject(err),

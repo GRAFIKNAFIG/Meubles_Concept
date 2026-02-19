@@ -8,7 +8,7 @@ import * as THREE from 'three'
 import styles from './Studio.module.css'
 
 function uuid() {
-  return crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)
+  return crypto.randomUUID()
 }
 
 const DEFAULTS: Omit<Design, 'id' | 'createdAt' | 'updatedAt'> = {

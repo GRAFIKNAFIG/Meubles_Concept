@@ -6,7 +6,7 @@ import { designRepo, roomRepo } from '../db'
 import styles from './RoomPlanner.module.css'
 
 function uuid() {
-  return crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)
+  return crypto.randomUUID()
 }
 
 const SCALE = 0.05
