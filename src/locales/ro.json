@@ -7,10 +7,20 @@
   },
   "home": {
     "title": "Meubles Concept",
-    "subtitle": "Proiectați mobilă în milimetri, vizualizați-o în 3D.",
+    "app_badge": "Aplicație pentru proiectarea mobilei",
+    "subtitle": "Proiectați mobilă acasă, fără creion, în milimetri — și vizualizați-o în 3D interactiv.",
     "cta_studio": "Creați mobilă",
     "cta_showroom": "Vedeți creațiile mele",
-    "cta_planner": "Planificați o cameră"
+    "cta_planner": "Planificați o cameră",
+    "features_title": "Ce puteți face",
+    "feature_studio_title": "Studio parametric",
+    "feature_studio_desc": "Introduceți dimensiunile în mm, alegeți materialul și generați un raft sau un dulap în 3D în timp real.",
+    "feature_showroom_title": "Catalog",
+    "feature_showroom_desc": "Regăsiți toate creațiile salvate, consultați dimensiunile lor și exportați-le ca fișier GLB.",
+    "feature_planner_title": "Planificator cameră",
+    "feature_planner_desc": "Plasați mobilele într-o cameră dreptunghiulară, mutați-le și detectați suprapunerile.",
+    "feature_offline": "Funcționează offline — datele rămân pe dispozitivul dvs.",
+    "start_cta": "Începeți să proiectați"
   },
   "studio": {
     "title": "Studio de proiectare",

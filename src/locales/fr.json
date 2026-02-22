@@ -7,10 +7,20 @@
   },
   "home": {
     "title": "Meubles Concept",
-    "subtitle": "Concevez vos meubles en millimètres, visualisez-les en 3D.",
+    "app_badge": "Application de conception de meubles",
+    "subtitle": "Concevez vos meubles chez vous, sans crayon, en millimètres — et visualisez-les en 3D interactif.",
     "cta_studio": "Créer un meuble",
     "cta_showroom": "Voir mes créations",
-    "cta_planner": "Planifier une pièce"
+    "cta_planner": "Planifier une pièce",
+    "features_title": "Ce que vous pouvez faire",
+    "feature_studio_title": "Studio paramétrique",
+    "feature_studio_desc": "Saisissez les dimensions en mm, choisissez le matériau et générez une étagère ou une armoire en 3D en temps réel.",
+    "feature_showroom_title": "Catalogue",
+    "feature_showroom_desc": "Retrouvez toutes vos créations sauvegardées, consultez leurs dimensions et exportez-les en fichier GLB.",
+    "feature_planner_title": "Planificateur de pièce",
+    "feature_planner_desc": "Placez vos meubles dans une pièce rectangulaire, déplacez-les et détectez les chevauchements.",
+    "feature_offline": "Fonctionne hors-ligne — vos données restent sur votre appareil.",
+    "start_cta": "Commencer à concevoir"
   },
   "studio": {
     "title": "Studio de conception",
