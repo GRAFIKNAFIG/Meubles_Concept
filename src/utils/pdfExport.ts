@@ -56,7 +56,9 @@ export function exportCutListPDF(project: KitchenProject, items: GroupedCutListI
   })
 
   const totalPieces = items.reduce((s, i) => s + i.qty, 0)
-  const finalY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 6
+  // jspdf-autotable augments jsPDF with lastAutoTable at runtime
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const finalY = ((doc as any).lastAutoTable?.finalY ?? 28) + 6
   doc.setFontSize(9)
   doc.setFont('helvetica', 'bold')
   const totalLabel = lang === 'ro' ? `Total piese: ${totalPieces}` : `Total pièces : ${totalPieces}`

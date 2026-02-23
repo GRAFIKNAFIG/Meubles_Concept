@@ -84,7 +84,8 @@ export default function KitchenProject() {
     if (!form.name.trim() || !id) return
     const now = Date.now()
     if (editId) {
-      const existing = cabinets.find(c => c.id === editId)!
+      const existing = cabinets.find(c => c.id === editId)
+      if (!existing) return
       const updated: Cabinet = { ...existing, ...form, updatedAt: now }
       await cabinetRepo.save(updated)
       setCabinets(prev => prev.map(c => c.id === editId ? updated : c))
