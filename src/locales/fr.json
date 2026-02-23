@@ -53,7 +53,8 @@
     "width": "Largeur",
     "addFurniture": "Ajouter un meuble",
     "placed": "Meubles placés",
-    "save": "Enregistrer le plan"
+    "save": "Enregistrer le plan",
+    "saveError": "Erreur lors de la sauvegarde"
   },
   "templates": {
     "title": "Gabarits de caissons",

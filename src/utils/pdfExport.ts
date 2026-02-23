@@ -1,23 +1,26 @@
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
-import type { CutListItem, BomItem } from '../types'
+import i18n from '../i18n'
+import type { CutListItem, BomItem, PanelColor } from '../types'
+
+function translatePanelColor(panelColor: PanelColor): string {
+  return i18n.t(`cabinet.color${panelColor}`, { defaultValue: panelColor })
+}
 
 export function exportCutListPDF(
   projectName: string,
   cutList: CutListItem[],
   bom: BomItem[],
-  translateBomLabel: (key: string) => string,
-  lang = 'fr'
+  translateBomLabel: (key: string) => string
 ): void {
+  const lang = i18n.language
   const doc = new jsPDF({ orientation: 'landscape' })
   const now = new Date().toLocaleDateString(lang === 'ro' ? 'ro-RO' : 'fr-FR')
 
-  const title = lang === 'ro'
-    ? `${projectName} – Plan de debitare`
-    : `${projectName} – Plan de débit`
+  const title = `${projectName} – ${i18n.t('kitchen.tabCutList')}`
   const generatedLabel = lang === 'ro' ? `Generat pe ${now}` : `Généré le ${now}`
-  const cutListLabel = lang === 'ro' ? 'Listă de debitare' : 'Liste de débit'
-  const bomLabel = lang === 'ro' ? 'Nomenclatură feronerie' : 'Nomenclature quincaillerie'
+  const cutListLabel = i18n.t('kitchen.tabCutList')
+  const bomLabel = i18n.t('kitchen.tabBOM')
 
   doc.setFontSize(18)
   doc.text(title, 14, 18)
@@ -28,9 +31,16 @@ export function exportCutListPDF(
   doc.setFontSize(13)
   doc.text(cutListLabel, 14, 36)
 
-  const cutListHead = lang === 'ro'
-    ? [['Corp', 'Piesă', 'Cant.', 'L (mm)', 'l (mm)', 'Gros. (mm)', 'Material', 'Culoare']]
-    : [['Meuble', 'Pièce', 'Qté', 'L (mm)', 'l (mm)', 'Ép. (mm)', 'Matière', 'Couleur']]
+  const cutListHead = [[
+    i18n.t('cutlist.cabinet'),
+    i18n.t('cutlist.part'),
+    i18n.t('cutlist.qty'),
+    i18n.t('cutlist.length'),
+    i18n.t('cutlist.width'),
+    i18n.t('cutlist.thickness'),
+    i18n.t('cabinet.panelType'),
+    i18n.t('cabinet.panelColor'),
+  ]]
 
   autoTable(doc, {
     startY: 40,
@@ -43,7 +53,7 @@ export function exportCutListPDF(
       Math.round(item.widthMm),
       item.thicknessMm,
       item.panelType,
-      item.panelColor,
+      translatePanelColor(item.panelColor),
     ]),
     styles: { fontSize: 8 },
     headStyles: { fillColor: [37, 99, 235] },
@@ -54,9 +64,12 @@ export function exportCutListPDF(
     doc.setFontSize(13)
     doc.text(bomLabel, 14, finalY)
 
-    const bomHead = lang === 'ro'
-      ? [['Corp', 'Referință', 'Descriere', 'Cant.']]
-      : [['Meuble', 'Référence', 'Description', 'Qté']]
+    const bomHead = [[
+      i18n.t('bom.cabinet'),
+      i18n.t('bom.ref'),
+      i18n.t('bom.description'),
+      i18n.t('bom.qty'),
+    ]]
 
     autoTable(doc, {
       startY: finalY + 4,

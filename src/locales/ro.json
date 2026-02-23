@@ -53,7 +53,8 @@
     "width": "Lățime",
     "addFurniture": "Adăugați mobilier",
     "placed": "Mobilier plasat",
-    "save": "Salvați planul"
+    "save": "Salvați planul",
+    "saveError": "Eroare la salvare"
   },
   "templates": {
     "title": "Șabloane corpuri",

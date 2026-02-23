@@ -18,6 +18,7 @@ export interface Design {
 }
 
 export interface RoomItem {
+  id: string
   designId: string
   x: number
   y: number

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { roomRepo, designRepo } from '../db'
@@ -12,6 +12,8 @@ function newRoom(): Room {
   return { id: crypto.randomUUID(), name: 'Nouvelle pièce', length: 5000, width: 4000, height: 2500, items: [], createdAt: now, updatedAt: now }
 }
 
+const GRID_STEP = 500 // mm, offset between auto-placed items
+
 export default function RoomPlanner() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -19,6 +21,10 @@ export default function RoomPlanner() {
   const [room, setRoom] = useState<Room>(newRoom())
   const [designs, setDesigns] = useState<Design[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle')
+
+  // Drag state
+  const dragRef = useRef<{ itemId: string; startX: number; startY: number; origX: number; origY: number } | null>(null)
 
   useEffect(() => {
     designRepo.getAll().then(setDesigns)
@@ -30,17 +36,71 @@ export default function RoomPlanner() {
   }
 
   const save = async () => {
-    await roomRepo.save(room)
-    if (!id) navigate(`/planner/${room.id}`, { replace: true })
+    try {
+      await roomRepo.save(room)
+      setSaveStatus('saved')
+      if (!id) navigate(`/planner/${room.id}`, { replace: true })
+      setTimeout(() => setSaveStatus('idle'), 2000)
+    } catch {
+      setSaveStatus('error')
+      setTimeout(() => setSaveStatus('idle'), 3000)
+    }
   }
 
   const addItem = (designId: string) => {
-    const item: RoomItem = { designId, x: 200, y: 200, rotation: 0 }
+    const idx = room.items.length
+    const col = idx % 4
+    const row = Math.floor(idx / 4)
+    const x = 200 + col * GRID_STEP
+    const y = 200 + row * GRID_STEP
+    const item: RoomItem = { id: crypto.randomUUID(), designId, x, y, rotation: 0 }
     updateRoom('items', [...room.items, item])
   }
 
-  const removeItem = (idx: number) => {
-    updateRoom('items', room.items.filter((_, i) => i !== idx))
+  const removeItem = (itemId: string) => {
+    updateRoom('items', room.items.filter(i => i.id !== itemId))
+    if (selectedId === itemId) setSelectedId(null)
+  }
+
+  const updateItemPosition = useCallback((itemId: string, x: number, y: number) => {
+    setRoom(prev => ({
+      ...prev,
+      updatedAt: Date.now(),
+      items: prev.items.map(i => i.id === itemId ? { ...i, x, y } : i),
+    }))
+  }, [])
+
+  const svgRef = useRef<SVGSVGElement>(null)
+
+  const onPointerDown = (e: React.PointerEvent<SVGGElement>, itemId: string, itemX: number, itemY: number) => {
+    e.currentTarget.setPointerCapture(e.pointerId)
+    setSelectedId(itemId)
+    const svg = svgRef.current
+    if (!svg) return
+    const pt = svg.createSVGPoint()
+    pt.x = e.clientX
+    pt.y = e.clientY
+    const svgPt = pt.matrixTransform(svg.getScreenCTM()!.inverse())
+    dragRef.current = { itemId, startX: svgPt.x, startY: svgPt.y, origX: itemX, origY: itemY }
+  }
+
+  const onPointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+    if (!dragRef.current) return
+    const svg = svgRef.current
+    if (!svg) return
+    const pt = svg.createSVGPoint()
+    pt.x = e.clientX
+    pt.y = e.clientY
+    const svgPt = pt.matrixTransform(svg.getScreenCTM()!.inverse())
+    const dx = (svgPt.x - dragRef.current.startX) / SCALE
+    const dy = (svgPt.y - dragRef.current.startY) / SCALE
+    const newX = Math.max(0, dragRef.current.origX + dx)
+    const newY = Math.max(0, dragRef.current.origY + dy)
+    updateItemPosition(dragRef.current.itemId, newX, newY)
+  }
+
+  const onPointerUp = () => {
+    dragRef.current = null
   }
 
   return (
@@ -63,41 +123,51 @@ export default function RoomPlanner() {
         ))}
 
         <h3>{t('planner.placed')}</h3>
-        {room.items.map((item, idx) => {
+        {room.items.map(item => {
           const d = designs.find(x => x.id === item.designId)
           return (
-            <div key={idx} className={styles.placedItem}>
+            <div key={item.id} className={styles.placedItem}>
               <span>{d?.name ?? '?'}</span>
-              <button onClick={() => removeItem(idx)} className={styles.removeBtn}>✕</button>
+              <button onClick={() => removeItem(item.id)} className={styles.removeBtn}>✕</button>
             </div>
           )
         })}
 
-        <button className={styles.saveBtn} onClick={save}>{t('planner.save')}</button>
+        <button
+          className={styles.saveBtn}
+          onClick={save}
+          disabled={saveStatus !== 'idle'}
+        >
+          {saveStatus === 'saved' ? '✓ ' + t('studio.saved') : saveStatus === 'error' ? t('planner.saveError') : t('planner.save')}
+        </button>
       </div>
 
       <div className={styles.canvas}>
         <svg
+          ref={svgRef}
           width={room.length * SCALE}
           height={room.width * SCALE}
-          style={{ background: '#fff', border: '2px solid #1e293b' }}
+          style={{ background: '#fff', border: '2px solid #1e293b', touchAction: 'none' }}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerLeave={onPointerUp}
         >
-          {room.items.map((item, idx) => {
+          {room.items.map(item => {
             const d = designs.find(x => x.id === item.designId)
             if (!d) return null
             return (
               <g
-                key={idx}
+                key={item.id}
                 transform={`translate(${item.x * SCALE},${item.y * SCALE}) rotate(${item.rotation})`}
-                onClick={() => setSelectedId(item.designId)}
-                style={{ cursor: 'pointer' }}
+                onPointerDown={e => onPointerDown(e, item.id, item.x, item.y)}
+                style={{ cursor: 'grab' }}
               >
                 <rect
                   width={d.width * SCALE}
                   height={d.depth * SCALE}
-                  fill={selectedId === item.designId ? '#bfdbfe' : '#dbeafe'}
-                  stroke="#2563eb"
-                  strokeWidth={1}
+                  fill={selectedId === item.id ? '#bfdbfe' : '#dbeafe'}
+                  stroke={selectedId === item.id ? '#1d4ed8' : '#2563eb'}
+                  strokeWidth={selectedId === item.id ? 2 : 1}
                 />
                 <text x={4} y={14} fontSize={10} fill="#1e293b">{d.name}</text>
               </g>
