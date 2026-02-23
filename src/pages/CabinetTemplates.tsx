@@ -56,7 +56,7 @@ export default function CabinetTemplates() {
 
   const duplicate = async (tpl: CabinetTemplate) => {
     const now = Date.now()
-    await cabinetTemplateRepo.save({ ...tpl, id: crypto.randomUUID(), name: `${tpl.name} (copie)`, createdAt: now, updatedAt: now })
+    await cabinetTemplateRepo.save({ ...tpl, id: crypto.randomUUID(), name: `${tpl.name} (${t('templates.copyLabel')})`, createdAt: now, updatedAt: now })
     load()
   }
 

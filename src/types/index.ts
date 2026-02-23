@@ -130,7 +130,7 @@ export interface CutListItem {
 
 export interface BomItem {
   ref: string
-  description: string
+  labelKey: string  // i18n translation key, e.g. 'bom.hinge110'
   qty: number
   cabinetName: string
 }

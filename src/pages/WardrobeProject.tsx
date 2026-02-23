@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import i18n from '../i18n'
 import { wardrobeProjectRepo, cabinetRepo, cabinetTemplateRepo } from '../db'
 import type { WardrobeProject, Cabinet, CabinetVariant, PanelType, PanelColor, FrontsConfig, FrontConfig, HandleType, DoorOption, CabinetTemplate } from '../types'
 import { generateCutList } from '../utils/cutList'
@@ -48,6 +49,7 @@ export default function WardrobeProject() {
     setTemplates(tmpl)
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load() }, [id])
 
   const saveProject = async (upd: WardrobeProject) => {
@@ -105,7 +107,7 @@ export default function WardrobeProject() {
           value={project.name}
           onChange={e => saveProject({ ...project, name: e.target.value, updatedAt: Date.now() })}
         />
-        <button className={styles.pdfBtn} onClick={() => exportCutListPDF(project.name, cutList, bom)}>
+        <button className={styles.pdfBtn} onClick={() => exportCutListPDF(project.name, cutList, bom, t, i18n.language)}>
           {t('wardrobe.exportPDF')}
         </button>
       </div>
@@ -205,7 +207,7 @@ export default function WardrobeProject() {
                 <tr key={i}>
                   <td>{row.cabinetName}</td>
                   <td>{row.ref}</td>
-                  <td>{row.description}</td>
+                  <td>{t(row.labelKey)}</td>
                   <td>{row.qty}</td>
                 </tr>
               ))}
