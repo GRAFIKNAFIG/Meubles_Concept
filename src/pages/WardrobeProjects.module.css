@@ -1,0 +1,16 @@
+.page { max-width: 900px; margin: 0 auto; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.header h2 { font-size: 1.5rem; }
+.btn { background: #7c3aed; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; border: none; font-size: 0.9rem; cursor: pointer; }
+.btn:hover { background: #6d28d9; }
+.empty { color: #64748b; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1rem; }
+.card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.cardInfo { display: flex; flex-direction: column; gap: 0.25rem; }
+.cardInfo strong { font-size: 1rem; }
+.cardInfo span { font-size: 0.85rem; color: #64748b; }
+.cardActions { display: flex; gap: 0.5rem; }
+.openBtn { flex: 1; text-align: center; background: #f5f3ff; color: #7c3aed; padding: 0.35rem; border-radius: 4px; text-decoration: none; font-size: 0.85rem; }
+.openBtn:hover { background: #ede9fe; }
+.delBtn { background: #fee2e2; color: #dc2626; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.85rem; cursor: pointer; }
+.delBtn:hover { background: #fecaca; }

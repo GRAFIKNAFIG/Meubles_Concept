@@ -1,0 +1,13 @@
+.planner { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; height: calc(100vh - 120px); }
+.sidebar { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; }
+.sidebar h2 { font-size: 1.1rem; }
+.sidebar h3 { font-size: 0.9rem; color: #64748b; margin-top: 0.5rem; }
+.sidebar label { display: flex; flex-direction: column; font-size: 0.85rem; color: #475569; gap: 0.25rem; }
+.sidebar input { padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.9rem; }
+.addBtn { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.85rem; text-align: left; }
+.addBtn:hover { background: #dbeafe; }
+.placedItem { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; background: #f8fafc; padding: 0.25rem 0.5rem; border-radius: 4px; }
+.removeBtn { background: none; border: none; color: #dc2626; font-size: 1rem; cursor: pointer; }
+.saveBtn { background: #2563eb; color: #fff; border: none; padding: 0.5rem; border-radius: 4px; margin-top: auto; }
+.saveBtn:hover { background: #1d4ed8; }
+.canvas { overflow: auto; background: #f1f5f9; border-radius: 8px; padding: 1rem; }
