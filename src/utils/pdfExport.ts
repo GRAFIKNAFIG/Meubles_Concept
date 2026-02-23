@@ -6,18 +6,16 @@ export function exportCutListPDF(
   projectName: string,
   cutList: CutListItem[],
   bom: BomItem[],
-  translateBomLabel: (key: string) => string,
-  lang = 'fr'
+  t: (key: string, options?: Record<string, unknown>) => string,
+  lang = 'ro'
 ): void {
   const doc = new jsPDF({ orientation: 'landscape' })
   const now = new Date().toLocaleDateString(lang === 'ro' ? 'ro-RO' : 'fr-FR')
 
-  const title = lang === 'ro'
-    ? `${projectName} – Plan de debitare`
-    : `${projectName} – Plan de débit`
-  const generatedLabel = lang === 'ro' ? `Generat pe ${now}` : `Généré le ${now}`
-  const cutListLabel = lang === 'ro' ? 'Listă de debitare' : 'Liste de débit'
-  const bomLabel = lang === 'ro' ? 'Nomenclatură feronerie' : 'Nomenclature quincaillerie'
+  const title = `${projectName} - ${t('pdf.titleSuffix')}`
+  const generatedLabel = t('pdf.generated', { date: now })
+  const cutListLabel = t('pdf.cutListTitle')
+  const bomLabel = t('pdf.bomTitle')
 
   doc.setFontSize(18)
   doc.text(title, 14, 18)
@@ -28,9 +26,16 @@ export function exportCutListPDF(
   doc.setFontSize(13)
   doc.text(cutListLabel, 14, 36)
 
-  const cutListHead = lang === 'ro'
-    ? [['Corp', 'Piesă', 'Cant.', 'L (mm)', 'l (mm)', 'Gros. (mm)', 'Material', 'Culoare']]
-    : [['Meuble', 'Pièce', 'Qté', 'L (mm)', 'l (mm)', 'Ép. (mm)', 'Matière', 'Couleur']]
+  const cutListHead = [[
+    t('cutlist.cabinet'),
+    t('cutlist.part'),
+    t('cutlist.qty'),
+    t('cutlist.length'),
+    t('cutlist.width'),
+    t('cutlist.thickness'),
+    t('cutlist.materialHeader'),
+    t('cutlist.colorHeader'),
+  ]]
 
   autoTable(doc, {
     startY: 40,
@@ -42,8 +47,8 @@ export function exportCutListPDF(
       Math.round(item.lengthMm),
       Math.round(item.widthMm),
       item.thicknessMm,
-      item.panelType,
-      item.panelColor,
+      t(`cabinet.panelType${item.panelType}`),
+      t(`cabinet.color${item.panelColor}`),
     ]),
     styles: { fontSize: 8 },
     headStyles: { fillColor: [37, 99, 235] },
@@ -54,18 +59,21 @@ export function exportCutListPDF(
     doc.setFontSize(13)
     doc.text(bomLabel, 14, finalY)
 
-    const bomHead = lang === 'ro'
-      ? [['Corp', 'Referință', 'Descriere', 'Cant.']]
-      : [['Meuble', 'Référence', 'Description', 'Qté']]
+    const bomHead = [[
+      t('bom.cabinet'),
+      t('bom.ref'),
+      t('bom.description'),
+      t('bom.qty'),
+    ]]
 
     autoTable(doc, {
       startY: finalY + 4,
       head: bomHead,
-      body: bom.map(item => [item.cabinetName, item.ref, translateBomLabel(item.labelKey), item.qty]),
+      body: bom.map(item => [item.cabinetName, item.ref, t(item.labelKey), item.qty]),
       styles: { fontSize: 8 },
       headStyles: { fillColor: [37, 99, 235] },
     })
   }
 
-  doc.save(`${projectName.replace(/\s+/g, '_')}_debit.pdf`)
+  doc.save(`${projectName.replace(/\s+/g, '_')}_debitare.pdf`)
 }

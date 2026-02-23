@@ -183,7 +183,7 @@ export default function WardrobeProject() {
                   <td>{Math.round(row.lengthMm)}</td>
                   <td>{Math.round(row.widthMm)}</td>
                   <td>{row.thicknessMm}</td>
-                  <td>{row.panelType} / {row.panelColor}</td>
+                  <td>{t(`cabinet.panelType${row.panelType}`)} / {t(`cabinet.color${row.panelColor}`)}</td>
                 </tr>
               ))}
             </tbody>

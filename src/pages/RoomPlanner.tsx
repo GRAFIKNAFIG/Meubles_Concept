@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import i18n from '../i18n'
 import { roomRepo, designRepo } from '../db'
 import type { Room, Design, RoomItem } from '../types'
 import styles from './RoomPlanner.module.css'
 
 const SCALE = 0.1 // mm to px
+const ITEM_OFFSET = 20 // px offset between stacked items
 
 function newRoom(): Room {
   const now = Date.now()
-  return { id: crypto.randomUUID(), name: 'Nouvelle pièce', length: 5000, width: 4000, height: 2500, items: [], createdAt: now, updatedAt: now }
+  return { id: crypto.randomUUID(), name: i18n.t('planner.defaultName'), length: 5000, width: 4000, height: 2500, items: [], createdAt: now, updatedAt: now }
 }
 
 export default function RoomPlanner() {
@@ -19,6 +21,7 @@ export default function RoomPlanner() {
   const [room, setRoom] = useState<Room>(newRoom())
   const [designs, setDesigns] = useState<Design[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [saveError, setSaveError] = useState<string | null>(null)
 
   useEffect(() => {
     designRepo.getAll().then(setDesigns)
@@ -30,12 +33,19 @@ export default function RoomPlanner() {
   }
 
   const save = async () => {
-    await roomRepo.save(room)
-    if (!id) navigate(`/planner/${room.id}`, { replace: true })
+    setSaveError(null)
+    try {
+      await roomRepo.save(room)
+      if (!id) navigate(`/planner/${room.id}`, { replace: true })
+    } catch (e) {
+      console.error('Failed to save room plan:', e)
+      setSaveError(t('planner.saveError'))
+    }
   }
 
   const addItem = (designId: string) => {
-    const item: RoomItem = { designId, x: 200, y: 200, rotation: 0 }
+    const offset = room.items.length * ITEM_OFFSET
+    const item: RoomItem = { designId, x: 200 + offset, y: 200 + offset, rotation: 0 }
     updateRoom('items', [...room.items, item])
   }
 
@@ -73,6 +83,7 @@ export default function RoomPlanner() {
           )
         })}
 
+        {saveError && <p style={{ color: '#dc2626', fontSize: '0.85rem', margin: '0.5rem 0' }}>{saveError}</p>}
         <button className={styles.saveBtn} onClick={save}>{t('planner.save')}</button>
       </div>
 

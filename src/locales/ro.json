@@ -53,7 +53,9 @@
     "width": "Lățime",
     "addFurniture": "Adăugați mobilier",
     "placed": "Mobilier plasat",
-    "save": "Salvați planul"
+    "save": "Salvați planul",
+    "defaultName": "Cameră nouă",
+    "saveError": "Eroare la salvare. Încercați din nou."
   },
   "templates": {
     "title": "Șabloane corpuri",
@@ -140,7 +142,9 @@
     "handleType": "Deschidere",
     "handleNone": "Fără mâner",
     "handleHandle": "Mâner",
-    "handlePush": "Push-to-open"
+    "handlePush": "Deschidere prin apăsare",
+    "panelTypeMDF": "MDF",
+    "panelTypeMELAMINE": "Melaminat"
   },
   "cutlist": {
     "cabinet": "Corp",
@@ -149,7 +153,10 @@
     "length": "Lung (mm)",
     "width": "Lăț (mm)",
     "thickness": "Gros (mm)",
-    "material": "Material / Culoare"
+    "material": "Material / Culoare",
+    "color": "Culoare",
+    "materialHeader": "Material",
+    "colorHeader": "Culoare"
   },
   "bom": {
     "cabinet": "Corp",
@@ -160,8 +167,14 @@
     "hingePlate": "Placă balama",
     "drawerSlide": "Ghidaj sertar cu bile (pereche)",
     "handle": "Mâner",
-    "pushToOpen": "Push-to-open",
+    "pushToOpen": "Deschidere prin apăsare",
     "adjLeg": "Picior reglabil"
+  },
+  "pdf": {
+    "titleSuffix": "Plan de debitare",
+    "generated": "Generat pe {{date}}",
+    "cutListTitle": "Lista de debitare",
+    "bomTitle": "Nomenclator feronerie"
   },
   "common": {
     "loading": "Se încarcă…",

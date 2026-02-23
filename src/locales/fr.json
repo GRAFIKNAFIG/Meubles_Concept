@@ -53,7 +53,9 @@
     "width": "Largeur",
     "addFurniture": "Ajouter un meuble",
     "placed": "Meubles placés",
-    "save": "Enregistrer le plan"
+    "save": "Enregistrer le plan",
+    "defaultName": "Nouvelle pièce",
+    "saveError": "Erreur lors de la sauvegarde. Réessayez."
   },
   "templates": {
     "title": "Gabarits de caissons",
@@ -140,7 +142,9 @@
     "handleType": "Ouverture",
     "handleNone": "Sans poignée",
     "handleHandle": "Poignée",
-    "handlePush": "Push-to-open"
+    "handlePush": "Pousseur d'ouverture",
+    "panelTypeMDF": "MDF",
+    "panelTypeMELAMINE": "Mélaminé"
   },
   "cutlist": {
     "cabinet": "Meuble",
@@ -149,7 +153,10 @@
     "length": "Long (mm)",
     "width": "Larg (mm)",
     "thickness": "Ép (mm)",
-    "material": "Matière / Couleur"
+    "material": "Matière / Couleur",
+    "color": "Couleur",
+    "materialHeader": "Matière",
+    "colorHeader": "Couleur"
   },
   "bom": {
     "cabinet": "Meuble",
@@ -162,6 +169,12 @@
     "handle": "Poignée",
     "pushToOpen": "Push-to-open",
     "adjLeg": "Pied réglable"
+  },
+  "pdf": {
+    "titleSuffix": "Plan de débit",
+    "generated": "Généré le {{date}}",
+    "cutListTitle": "Liste de débit",
+    "bomTitle": "Nomenclature quincaillerie"
   },
   "common": {
     "loading": "Chargement…",
