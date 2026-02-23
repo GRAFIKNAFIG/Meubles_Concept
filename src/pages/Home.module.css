@@ -1,0 +1,76 @@
+.root { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; padding: 2rem 0; }
+
+/* Hero */
+.hero { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: var(--primary);
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 0.25rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.hero h1 { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 0; }
+.subtitle { font-size: 1.05rem; color: var(--text-muted); max-width: 520px; line-height: 1.5; }
+.startBtn {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+}
+.startBtn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+/* Features */
+.features { width: 100%; max-width: 960px; }
+.featuresTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.cards { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+  text-align: left;
+  min-width: 200px;
+  max-width: 240px;
+  flex: 1;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(37,99,235,.12); border-color: var(--primary); }
+.icon { font-size: 2rem; }
+.card strong { font-size: 1rem; font-weight: 700; color: var(--text); }
+.cardDesc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; }
+
+/* Offline note */
+.offlineNote {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}

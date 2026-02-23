@@ -1,0 +1,37 @@
+.root { display: flex; flex-direction: column; gap: 1.25rem; }
+.title { font-size: 1.5rem; font-weight: 700; }
+.createRow { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.input {
+  padding: 0.5rem 0.75rem; border: 1px solid var(--border);
+  border-radius: 6px; background: var(--surface); font-size: 0.9rem; min-width: 220px;
+}
+.input:focus { outline: 2px solid var(--primary); border-color: transparent; }
+.btnCreate {
+  padding: 0.5rem 1.1rem; background: var(--primary); color: white;
+  border: none; border-radius: 6px; font-weight: 600; font-size: 0.9rem;
+}
+.btnCreate:hover { background: var(--primary-dark); }
+.empty { color: var(--text-muted); text-align: center; padding: 2rem; }
+.list { display: flex; flex-direction: column; gap: 0.5rem; }
+.row {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0.75rem 1rem;
+  box-shadow: var(--shadow);
+}
+.projectName {
+  flex: 1; text-align: left; background: none; border: none;
+  font-size: 1rem; font-weight: 600; color: var(--primary); cursor: pointer;
+}
+.projectName:hover { text-decoration: underline; }
+.projectDate { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
+.btnEdit { background: none; border: none; font-size: 1rem; padding: 0.25rem; }
+.btnDelete { background: none; border: none; font-size: 1rem; padding: 0.25rem; color: #ef4444; }
+.btnSave {
+  padding: 0.4rem 0.8rem; background: #16a34a; color: white;
+  border: none; border-radius: 5px; font-size: 0.85rem; font-weight: 600;
+}
+.btnCancel {
+  padding: 0.4rem 0.8rem; background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 5px; font-size: 0.85rem;
+}
