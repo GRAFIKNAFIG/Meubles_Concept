@@ -46,6 +46,13 @@
     "delete": "Ștergeți",
     "confirmDelete": "Ștergeți acest mobilier?"
   },
+ "planner": {
+    "exportPDF": "Export PDF",
+    "exporting": "Se exportă...",
+    "exportError": "Eroare export PDF",
+    "exportPlan2D": "Plan 2D",
+    "exportIso3D": "Vedere 3D izometrică"
+  },
   "planner": {
     "title": "Plan cameră",
     "name": "Numele camerei",

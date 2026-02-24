@@ -46,6 +46,13 @@
     "delete": "Supprimer",
     "confirmDelete": "Supprimer ce meuble ?"
   },
+ "planner": {
+    "exportPDF": "Exporter PDF",
+    "exporting": "Export en cours...",
+    "exportError": "Erreur export PDF",
+    "exportPlan2D": "Plan 2D",
+    "exportIso3D": "Vue 3D isométrique"
+  },
   "planner": {
     "title": "Plan de pièce",
     "name": "Nom de la pièce",
